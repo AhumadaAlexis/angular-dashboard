@@ -1,0 +1,6 @@
+<form class="box" (ngSubmit)="onSubmit()">
+    <h1>Inicio de Sesión</h1>
+    <input type="text" placeholder="Usuario" (input)="user=$event.target.value">
+    <input type="password" placeholder="Password" (input)="pwd=$event.target.value">
+    <input type="submit" class="signup-btn" value="Iniciar">
+</form>

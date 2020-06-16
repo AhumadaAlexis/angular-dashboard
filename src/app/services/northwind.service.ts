@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Producto } from '../pages/histograma/histograma.component';
 
 const URL_API = environment.API.EndPoint.Northwind;
+const URL_Node = environment.LOG.EndPoint.Rest;
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +59,15 @@ export class NorthwindService {
     return this.http.post(`${URL_API}PieDimension/${dimension}/[Dim Tiempo].[Dim Tiempo Año]/[Dim Tiempo].[Dim Tiempo Mes]/${orden}`, values).pipe(
       map((result: any[]) => result)
     )
+  }
+
+  getLogin(username: any){
+    console.log(username);
+    return this.http.post(`${URL_Node}login`, username).pipe( map((result: any) => result ) )
+  }
+
+  getValidUser(token: any){
+    const headers = { 'Authorization': `bearer ${token}` }
+    return this.http.get(`${URL_Node}authorization`, { headers }).pipe( map((result: any) => result ))
   }
 }

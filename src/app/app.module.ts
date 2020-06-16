@@ -9,12 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { AcercaDeComponent } from './pages/acerca-de/acerca-de.component';
-import { Top5Component } from './pages/top5/top5.component';
+import { Top5Component, AuthGuard } from './pages/top5/top5.component';
 import { HistogramaComponent } from './pages/histograma/histograma.component';
-import { NavbarComponent } from './components/navigation/navbar/navbar.component';
+import { NavbarComponent, OnlyBar } from './components/navigation/navbar/navbar.component';
 import { LineChartComponent } from './components/charts/line-chart/line-chart.component';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
     NavbarComponent,
     LineChartComponent,
     BarChartComponent,
-    PieChartComponent
+    PieChartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard, OnlyBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

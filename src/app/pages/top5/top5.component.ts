@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { NorthwindService } from 'src/app/services/northwind.service';
 import { Label } from 'ng2-charts';
 import { Observable } from 'rxjs/internal/Observable';
+import { CanActivate } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { rol } from '../login/login.component';
+
 
 @Component({
   selector: 'app-top5',
@@ -102,4 +106,21 @@ export class Cliente{
   Nombre: string[]=[];
   Annio: string[]=[];
   Mese: string[]=[];
+}
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  canActivate(){
+    if(rol == 'ROL_PIE'){
+      return true;
+    }else{
+      alert('No tiene permiso para acceder a esta página');
+      return false;
+    }
+  }
 }
